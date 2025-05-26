@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ammar Jeevunjee - The Legend</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, #ff6b6b22 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #4ecdc422 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, #45b7d122 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .main-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+        
+        .attributes-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            position: relative;
+        }
+        
+        .attributes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .attribute-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .attribute-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.8s;
+        }
+        
+        .attribute-card:hover::before {
+            left: 100%;
+        }
+        
+        .attribute-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .attribute-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .attribute-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .attribute-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .music-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #8360c3 0%, #2ebf91 100%);
+            text-align: center;
+        }
+        
+        .music-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .music-description {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+        
+        .music-tracks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .music-track {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 20px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        .music-track:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            z-index: 10;
+        }
+        
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) translateY(18px);
+                opacity: 0;
+            }
+        }
+        
+        .interactive-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #ff6b9d 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .interactive-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .aura-counter {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .aura-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .aura-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .aura-button:hover::before {
+            left: 100%;
+        }
+        
+        .aura-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .aura-button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        .praise-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .praise-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 25px;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .praise-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            text-align: center;
+        }
+        
+        .social-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 25px 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-icon {
+            font-size: 2rem;
+        }
+        
+        .praise-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #ff6b6b;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        }
+        
+        .praise-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .aura-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .aura-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #fff, transparent);
+            border-radius: 50%;
+            animation: auraFloat 3s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes auraFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-100px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .attributes-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .music-tracks {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .attribute-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="main-title">AMMAR<br>JEEVUNJEE</h1>
+            <p class="subtitle">The Embodiment of Effortless Excellence</p>
+        </div>
+        
+        <div class="scroll-indicator"></div>
+    </section>
+    
+    <section class="interactive-section">
+        <div class="aura-particles" id="auraParticles"></div>
+        <div class="interactive-container">
+            <h2 class="interactive-title">Boost The Legend's Aura</h2>
+            <div class="aura-counter" id="auraCounter">Aura Level: <span id="auraValue">∞</span></div>
+            
+            <button class="aura-button" id="auraBtn">✨ ADD MORE AURA ✨</button>
+            
+            <div class="praise-buttons">
+                <button class="praise-btn" data-praise="Absolutely legendary! 🔥">He's Too Cool</button>
+                <button class="praise-btn" data-praise="The definition of perfection! 👑">Pure Excellence</button>
+                <button class="praise-btn" data-praise="Unmatched energy! ⚡">Elite Vibes</button>
+                <button class="praise-btn" data-praise="Simply incredible! 🌟">Goat Status</button>
+                <button class="praise-btn" data-praise="The standard others aspire to! 💎">King Energy</button>
+                <button class="praise-btn" data-praise="Effortlessly supreme! 🚀">Next Level</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="social-section">
+        <h2 class="social-title">Follow The Legend</h2>
+        <div class="social-links">
+            <a href="https://instagram.com/free.aami" target="_blank" class="social-link">
+                <span class="social-icon">📷</span>
+                <div>
+                    <div>Instagram</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">@free.aami</div>
+                </div>
+            </a>
+            <a href="https://tiktok.com/@free.aami" target="_blank" class="social-link">
+                <span class="social-icon">🎵</span>
+                <div>
+                    <div>TikTok</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">@free.aami</div>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <section class="attributes-section">
+        <div class="attributes-container">
+            <div class="attribute-card">
+                <span class="attribute-icon">😎</span>
+                <h3 class="attribute-title">Nonchalant King</h3>
+                <p class="attribute-description">
+                    Ammar moves through life with an unmatched level of cool composure. His nonchalant energy is magnetic—he makes everything look effortless while others struggle to keep up with his natural flow.
+                </p>
+            </div>
+            
+            <div class="attribute-card">
+                <span class="attribute-icon">📏</span>
+                <h3 class="attribute-title">Towering Presence</h3>
+                <p class="attribute-description">
+                    Standing tall both literally and figuratively, Ammar's height isn't just physical—it's the way he carries himself that makes him stand out in any room. His presence commands attention without even trying.
+                </p>
+            </div>
+            
+            <div class="attribute-card">
+                <span class="attribute-icon">🧠</span>
+                <h3 class="attribute-title">Intellectual Powerhouse</h3>
+                <p class="attribute-description">
+                    His mind operates on a different level. Ammar's intelligence isn't just book smarts—it's street smarts, emotional intelligence, and that rare ability to see solutions where others see problems.
+                </p>
+            </div>
+            
+            <div class="attribute-card">
+                <span class="attribute-icon">✨</span>
+                <h3 class="attribute-title">Ultimate Huzz Magnet</h3>
+                <p class="attribute-description">
+                    There's something about Ammar that draws people in like a gravitational force. His charisma is undeniable, his charm is effortless, and his appeal is simply magnetic. The huzz follows wherever he goes.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="music-section">
+        <h2 class="music-title">The Soundtrack of Greatness</h2>
+        <p class="music-description">
+            When Ammar walks into any space, the atmosphere shifts. The air gets electric, time slows down, and somehow the perfect soundtrack starts playing. It's like the universe itself orchestrates the perfect vibe whenever he's around.
+        </p>
+        
+        <div class="music-tracks">
+            <div class="music-track">Forever Ever - Trippie Redd</div>
+            <div class="music-track">Some of You - Bryson Tiller</div>
+            <div class="music-track">All I Need - Lloyd</div>
+            <div class="music-track">Don't - Bryson Tiller</div>
+            <div class="music-track">Me U & Hennessy - Lucky Daye</div>
+            <div class="music-track">Over - Lucky Daye</div>
+            <div class="music-track">Run - Sheltoh</div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <p class="footer-text">
+            In a world full of ordinary, Ammar Jeevunjee stands as the extraordinary. He's not just a person—he's an experience, a vibe, a whole mood. The legend continues to grow with every step he takes.
+        </p>
+    </footer>
+    
+    <div class="praise-popup" id="praisePopup"></div>
+    
+    <script>
+        // Add smooth scrolling and enhanced interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            let auraLevel = 9999; // Starting at an already legendary level
+            const auraValue = document.getElementById('auraValue');
+            const auraBtn = document.getElementById('auraBtn');
+            const auraParticles = document.getElementById('auraParticles');
+            const praisePopup = document.getElementById('praisePopup');
+            const praiseButtons = document.querySelectorAll('.praise-btn');
+            
+            // Aura boost functionality
+            auraBtn.addEventListener('click', function() {
+                auraLevel += Math.floor(Math.random() * 1000) + 500;
+                auraValue.textContent = auraLevel.toLocaleString();
+                
+                // Create particle effect
+                createAuraParticles();
+                
+                // Button animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Show random praise
+                const praises = [
+                    "Aura level: MAXIMUM! 🔥",
+                    "The legend grows stronger! 👑",
+                    "Unstoppable energy! ⚡",
+                    "Pure excellence achieved! ✨",
+                    "Legendary status confirmed! 🌟"
+                ];
+                showPraise(praises[Math.floor(Math.random() * praises.length)]);
+            });
+            
+            // Praise button functionality
+            praiseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const praise = this.getAttribute('data-praise');
+                    showPraise(praise);
+                    
+                    // Add rainbow effect to button
+                    this.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4)';
+                    this.style.backgroundSize = '400% 400%';
+                    this.style.animation = 'gradient 1s ease';
+                    
+                    setTimeout(() => {
+                        this.style.background = '';
+                        this.style.animation = '';
+                    }, 1000);
+                });
+            });
+            
+            // Create aura particles
+            function createAuraParticles() {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'aura-particle';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.animationDelay = Math.random() * 0.5 + 's';
+                        auraParticles.appendChild(particle);
+                        
+                        setTimeout(() => {
+                            particle.remove();
+                        }, 3000);
+                    }, i * 50);
+                }
+            }
+            
+            // Show praise popup
+            function showPraise(message) {
+                praisePopup.textContent = message;
+                praisePopup.classList.add('show');
+                
+                setTimeout(() => {
+                    praisePopup.classList.remove('show');
+                }, 2000);
+            }
+            
+            // Smooth scroll for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe attribute cards for scroll animations
+            document.querySelectorAll('.attribute-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add parallax effect to floating elements
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelectorAll('.floating-element');
+                const speed = 0.5;
+                
+                parallax.forEach(element => {
+                    const yPos = -(scrolled * speed);
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+            
+            // Add hover sound effect simulation (visual feedback)
+            document.querySelectorAll('.music-track').forEach(track => {
+                track.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 10px 25px rgba(255, 255, 255, 0.2)';
+                });
+                
+                track.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Social links hover effects
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.3)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.15)';
+                });
+            });
+            
+            // Auto-boost aura occasionally
+            setInterval(() => {
+                if (Math.random() < 0.1) { // 10% chance every 3 seconds
+                    auraLevel += Math.floor(Math.random() * 100) + 50;
+                    auraValue.textContent = auraLevel.toLocaleString();
+                    createAuraParticles();
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
